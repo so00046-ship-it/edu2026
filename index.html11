@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헌법과 인권 - 인터랙티브 클래스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .hero-pattern {
+            background-color: #1e3a8a;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-opacity='0.1'%3E%3Cpath fill='%23ffffff' d='M50 50L50 0L100 0L100 50L50 50ZM0 50L0 0L50 0L50 50L0 50ZM50 100L50 50L100 50L100 100L50 100ZM0 100L0 50L50 50L50 100L0 100Z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .drop-zone {
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+        .drop-zone.drag-over {
+            background-color: #dbeafe;
+            border: 2px dashed #3b82f6;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 3s ease-in-out infinite; }
+        .hidden-section { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .show-section { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2 group">
+                <div class="p-2 bg-blue-600 rounded-lg group-hover:rotate-12 transition-transform">
+                    <i class="fas fa-gavel text-white"></i>
+                </div>
+                <span class="text-xl font-extrabold text-blue-900">Constitution Lab</span>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-wider">
+                <a href="#lab" class="text-blue-600">Lab 1: 기초</a>
+                <a href="#activity" class="hover:text-blue-600 transition">Lab 2: 체험</a>
+                <a href="#game" class="hover:text-blue-600 transition">Lab 3: 게임</a>
+                <a href="#final" class="hover:text-blue-600 transition">마무리</a>
+            </div>
+            <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg shadow-blue-200 hover:bg-blue-700 transition">수업 입장</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-pattern pt-40 pb-32 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-block px-4 py-1 bg-blue-500/30 rounded-full border border-blue-400/50 text-sm font-bold mb-6">
+                인터랙티브 법교육 프로그램
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                헌법, 딱딱한 글자가 아니라 <br> <span class="text-yellow-400">우리의 권리</span>입니다.
+            </h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                대한민국 최고의 약속, 헌법을 직접 체험하고 나만의 인권 헌장을 만들어보며 법과 더 가까워지는 시간을 가져보세요.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#lab" class="bg-white text-blue-900 px-10 py-4 rounded-xl font-black text-lg shadow-xl hover:scale-105 transition">시작하기</a>
+                <a href="#activity" class="glass-morphism text-white px-10 py-4 rounded-xl font-black text-lg hover:bg-white/20 transition">인권 헌장 쓰기</a>
+            </div>
+        </div>
+        <!-- Decorative SVG -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+            <svg viewBox="0 0 1440 320" class="relative block w-full h-[100px] fill-slate-50">
+                <path d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,197.3C960,203,1056,149,1152,133.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Lab 1: Interactive Learning -->
+    <section id="lab" class="py-24 bg-slate-50 hidden-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-black text-slate-900 mb-6 italic">#1. 헌법의 중심을 찾아라</h2>
+                    <p class="text-lg text-slate-600 mb-8">헌법 제1조를 클릭하여 핵심 키워드가 무엇인지 확인해보세요.</p>
+                    <div class="space-y-4">
+                        <div class="p-6 bg-white rounded-3xl shadow-sm border-2 border-slate-100 hover:border-blue-400 cursor-pointer transition group" onclick="toggleAnalysis()">
+                            <p id="constitution-text" class="text-2xl font-bold leading-snug">
+                                "대한민국은 <span class="keyword text-slate-300 transition" id="k1">민주공화국</span>이다. 대한민국의 <span class="keyword text-slate-300 transition" id="k2">주권</span>은 <span class="keyword text-slate-300 transition" id="k3">국민</span>에게 있고..."
+                            </p>
+                            <p class="mt-4 text-sm text-blue-500 font-bold group-hover:animate-pulse">클릭하여 핵심 단어 강조하기 💡</p>
+                        </div>
+                        <div id="analysis-box" class="hidden p-6 bg-blue-900 text-white rounded-3xl shadow-xl">
+                            <h4 class="font-black text-yellow-400 mb-2">오늘의 핵심 포인트!</h4>
+                            <p class="text-sm opacity-90">우리나라의 주인은 누구일까요? 바로 '국민'입니다. 헌법은 나라의 주인이 국민임을 명확히 선언하고 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="p-8 bg-blue-600 rounded-3xl text-white floating">
+                        <i class="fas fa-user-check text-4xl mb-4 text-blue-200"></i>
+                        <h4 class="text-xl font-bold mb-2">존엄성</h4>
+                        <p class="text-sm opacity-80">인간으로서 마땅히 누려야 할 가치</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-3xl shadow-xl border border-slate-100 mt-8">
+                        <i class="fas fa-balance-scale text-4xl mb-4 text-blue-600"></i>
+                        <h4 class="text-xl font-bold mb-2 text-slate-900">평등</h4>
+                        <p class="text-sm text-slate-500">차별받지 않을 권리</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab 2: Simulation Activity -->
+    <section id="activity" class="py-24 bg-white hidden-section">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4">나만의 '인권 선언문' 만들기</h2>
+                <p class="text-slate-500">우리 가족, 우리 반을 위한 약속을 직접 써보세요. 실시간으로 카드가 만들어집니다.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-black mb-2 uppercase text-blue-600">선언자 이름</label>
+                        <input type="text" id="signer-name" oninput="updateCard()" placeholder="예: 김민수" class="w-full px-6 py-4 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-black mb-2 uppercase text-blue-600">우리의 약속 1</label>
+                        <input type="text" id="promise-1" oninput="updateCard()" placeholder="예: 친구의 의견을 끝까지 듣는다" class="w-full px-6 py-4 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-black mb-2 uppercase text-blue-600">우리의 약속 2</label>
+                        <input type="text" id="promise-2" oninput="updateCard()" placeholder="예: 서로 고운 말을 사용한다" class="w-full px-6 py-4 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div id="preview-card" class="bg-gradient-to-br from-blue-900 to-indigo-900 p-8 rounded-[40px] shadow-2xl text-white transform rotate-2 hover:rotate-0 transition-all duration-500">
+                        <div class="flex justify-between items-start mb-10">
+                            <i class="fas fa-shield-alt text-3xl text-yellow-400"></i>
+                            <span class="text-xs font-bold tracking-widest opacity-50">NO. 2024-001</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-6" id="card-title">인권 선언문</h3>
+                        <div class="space-y-4 mb-12">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-yellow-400 text-blue-900 flex items-center justify-center text-xs font-bold">1</span>
+                                <p id="card-p1" class="text-blue-100 italic">약속을 입력해주세요...</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-yellow-400 text-blue-900 flex items-center justify-center text-xs font-bold">2</span>
+                                <p id="card-p2" class="text-blue-100 italic">약속을 입력해주세요...</p>
+                            </div>
+                        </div>
+                        <div class="border-t border-white/20 pt-6 flex justify-between items-end">
+                            <div>
+                                <p class="text-[10px] uppercase opacity-50 mb-1">Signed by</p>
+                                <p id="card-name" class="font-bold text-xl">홍길동</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center">
+                                <i class="fas fa-stamp text-white/30"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="window.print()" class="mt-8 w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition flex items-center justify-center gap-2">
+                        <i class="fas fa-download"></i> 이미지로 저장하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab 3: Drag & Drop Game -->
+    <section id="game" class="py-24 bg-slate-900 text-white hidden-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-bold tracking-tighter uppercase">Mini Game</span>
+                <h2 class="text-4xl font-black mt-2">기본권 끼리끼리!</h2>
+                <p class="text-slate-400 mt-4">아래의 권리들을 알맞은 주머니에 드래그해서 넣어보세요.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Drop Zones -->
+                <div class="p-8 rounded-3xl border-2 border-blue-500/30 bg-blue-500/5 drop-zone" ondragover="allowDrop(event)" ondrop="drop(event, 'freedom')" id="zone-freedom">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4 text-center"><i class="fas fa-dove mr-2"></i> 자유권 주머니</h3>
+                    <div class="flex flex-wrap gap-2 justify-center" id="freedom-items"></div>
+                </div>
+                <div class="p-8 rounded-3xl border-2 border-green-500/30 bg-green-500/5 drop-zone" ondragover="allowDrop(event)" ondrop="drop(event, 'social')" id="zone-social">
+                    <h3 class="text-xl font-bold text-green-400 mb-4 text-center"><i class="fas fa-graduation-cap mr-2"></i> 사회권 주머니</h3>
+                    <div class="flex flex-wrap gap-2 justify-center" id="social-items"></div>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4" id="draggable-source">
+                <div id="item1" draggable="true" ondragstart="drag(event)" data-type="freedom" class="px-6 py-3 bg-white text-slate-900 rounded-full font-bold cursor-move shadow-lg hover:bg-yellow-400 transition">신체의 자유</div>
+                <div id="item2" draggable="true" ondragstart="drag(event)" data-type="social" class="px-6 py-3 bg-white text-slate-900 rounded-full font-bold cursor-move shadow-lg hover:bg-yellow-400 transition">무상 교육</div>
+                <div id="item3" draggable="true" ondragstart="drag(event)" data-type="freedom" class="px-6 py-3 bg-white text-slate-900 rounded-full font-bold cursor-move shadow-lg hover:bg-yellow-400 transition">거주이전의 자유</div>
+                <div id="item4" draggable="true" ondragstart="drag(event)" data-type="social" class="px-6 py-3 bg-white text-slate-900 rounded-full font-bold cursor-move shadow-lg hover:bg-yellow-400 transition">인간다운 생활</div>
+                <div id="item5" draggable="true" ondragstart="drag(event)" data-type="freedom" class="px-6 py-3 bg-white text-slate-900 rounded-full font-bold cursor-move shadow-lg hover:bg-yellow-400 transition">언론의 자유</div>
+            </div>
+            
+            <div id="game-feedback" class="mt-12 text-center text-xl font-bold hidden text-yellow-400 animate-bounce">
+                참 잘했어요! 모든 권리를 올바르게 분류했습니다! 🌟
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="final" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="mb-8">
+                <i class="fas fa-award text-6xl text-blue-600"></i>
+            </div>
+            <h2 class="text-4xl font-black mb-6">최종 실력 점검</h2>
+            <div id="quiz-box" class="p-10 bg-slate-50 rounded-[40px] shadow-sm border border-slate-100">
+                <div id="q-content">
+                    <span id="q-num" class="text-blue-600 font-bold mb-2 block uppercase tracking-widest text-sm">Question 01</span>
+                    <p id="q-text" class="text-2xl font-bold mb-8 text-slate-800">국가 권력은 언제나 국민의 자유를 무제한으로 제한할 수 있다?</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="handleQuiz(true)" class="py-4 bg-white border-2 border-slate-200 rounded-2xl font-bold hover:border-blue-600 hover:text-blue-600 transition">그렇다 (O)</button>
+                        <button onclick="handleQuiz(false)" class="py-4 bg-white border-2 border-slate-200 rounded-2xl font-bold hover:border-blue-600 hover:text-blue-600 transition">아니다 (X)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 py-16 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-slate-400 text-sm font-medium">헌법은 우리의 목소리를 담는 그릇입니다.</p>
+            <div class="flex justify-center space-x-4 my-8">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400 hover:text-blue-600 cursor-pointer transition"><i class="fab fa-twitter"></i></div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400 hover:text-pink-600 cursor-pointer transition"><i class="fab fa-instagram"></i></div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400 hover:text-red-600 cursor-pointer transition"><i class="fab fa-youtube"></i></div>
+            </div>
+            <p class="text-slate-900 font-black">© 2024 CONSTITUTION INTERACTIVE LAB</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-section');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.hidden-section').forEach(el => observer.observe(el));
+
+        // Lab 1: Analysis Toggle
+        function toggleAnalysis() {
+            const keywords = document.querySelectorAll('.keyword');
+            const box = document.getElementById('analysis-box');
+            
+            keywords.forEach(k => {
+                k.classList.toggle('text-slate-300');
+                k.classList.toggle('text-blue-600');
+            });
+            
+            box.classList.toggle('hidden');
+        }
+
+        // Lab 2: Real-time Card Update
+        function updateCard() {
+            const name = document.getElementById('signer-name').value || '홍길동';
+            const p1 = document.getElementById('promise-1').value || '첫 번째 약속을 입력하세요';
+            const p2 = document.getElementById('promise-2').value || '두 번째 약속을 입력하세요';
+            
+            document.getElementById('card-name').textContent = name;
+            document.getElementById('card-p1').textContent = p1;
+            document.getElementById('card-p2').textContent = p2;
+            
+            if(name !== '홍길동') document.getElementById('card-name').classList.add('text-yellow-400');
+        }
+
+        // Lab 3: Drag and Drop Game
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+            ev.dataTransfer.setData("type", ev.target.getAttribute('data-type'));
+        }
+
+        let correctCount = 0;
+        const totalItems = 5;
+
+        function drop(ev, zoneType) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('drag-over');
+            
+            const id = ev.dataTransfer.getData("text");
+            const itemType = ev.dataTransfer.getData("type");
+            const element = document.getElementById(id);
+
+            if (itemType === zoneType) {
+                ev.currentTarget.querySelector('div').appendChild(element);
+                element.classList.remove('bg-white');
+                element.classList.add('bg-blue-500', 'text-white');
+                element.setAttribute('draggable', 'false');
+                correctCount++;
+                
+                if(correctCount === totalItems) {
+                    document.getElementById('game-feedback').classList.remove('hidden');
+                }
+            } else {
+                // Shake effect on error
+                ev.currentTarget.classList.add('bg-red-500/10');
+                setTimeout(() => ev.currentTarget.classList.remove('bg-red-500/10'), 300);
+            }
+        }
+
+        // Final Quiz
+        const quizData = [
+            { q: "헌법 제1조에 따르면 대한민국의 주권은 대통령에게 있다?", a: false },
+            { q: "인권은 태어날 때부터 하늘이 부여한 권리이다(천부인권)?", a: true }
+        ];
+        let currentQ = 0;
+
+        function handleQuiz(userChoice) {
+            const feedbackBox = document.getElementById('quiz-box');
+            const qContent = document.getElementById('q-content');
+            
+            const isCorrect = userChoice === quizData[currentQ].a;
+            
+            feedbackBox.innerHTML = isCorrect ? 
+                `<div class="animate-bounce mb-4 text-5xl">👏</div><h3 class="text-2xl font-black text-blue-600 mb-2">정답입니다!</h3><p class="text-slate-500">정말 훌륭한 시민이 될 자격이 충분하시네요!</p>` : 
+                `<div class="mb-4 text-5xl">🤔</div><h3 class="text-2xl font-black text-red-500 mb-2">다시 생각해보세요!</h3><p class="text-slate-500">헌법은 국민 모두의 약속임을 기억해주세요.</p>`;
+            
+            setTimeout(() => {
+                currentQ++;
+                if(currentQ < quizData.length) {
+                    feedbackBox.innerHTML = "";
+                    feedbackBox.appendChild(qContent);
+                    document.getElementById('q-num').textContent = `Question 0${currentQ + 1}`;
+                    document.getElementById('q-text').textContent = quizData[currentQ].q;
+                } else {
+                    feedbackBox.innerHTML = `<div class="p-4"><h3 class="text-2xl font-black mb-4">학습 완료!</h3><p class="mb-6">오늘 당신은 우리를 지켜주는 법의 소중함을 배웠습니다.</p><button onclick="location.reload()" class="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold">다시 처음부터</button></div>`;
+                }
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
