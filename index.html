@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인공지능 기초 - 수업 랜딩페이지</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        lightBg: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #0284c7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-lightBg text-slate-900 dark:bg-darkBg dark:text-f8fafc overflow-x-hidden transition-colors duration-300">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+        <div class="glow top-20 left-10 opacity-50 dark:opacity-100"></div>
+        <div class="glow bottom-20 right-10 opacity-50 dark:opacity-100"></div>
+        
+        <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-white/70 dark:bg-slate-900/50 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+            <div class="text-2xl font-bold gradient-text">AI CLASS 2024</div>
+            <div class="space-x-8 hidden md:flex items-center">
+                <a href="#intro" class="hover:text-sky-500 dark:hover:text-sky-400 transition">소개</a>
+                <a href="#ethics" class="hover:text-sky-500 dark:hover:text-sky-400 transition">AI 윤리</a>
+                <a href="#program" class="hover:text-sky-500 dark:hover:text-sky-400 transition">학습 프로그램</a>
+                
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center transition-colors">
+                    <i id="theme-icon" class="fa-solid fa-moon text-slate-700 dark:text-sky-400"></i>
+                </button>
+            </div>
+            <button class="bg-sky-500 hover:bg-sky-600 px-5 py-2 rounded-full font-semibold transition text-sm text-white">수업 시작하기</button>
+        </nav>
+
+        <div class="text-center z-10 pt-20">
+            <span class="bg-sky-500/10 text-sky-600 dark:text-sky-400 px-4 py-1 rounded-full text-sm font-medium border border-sky-500/20 mb-6 inline-block">정보 교과 특성화 수업</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-slate-900 dark:text-white">지능형 시대를 여는<br><span class="gradient-text">인공지능 기초</span></h1>
+            <p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                데이터에서 지혜를 찾아내는 여정, 인류와 기술이 공존하는 미래를 함께 고민하고 직접 만들어봅니다.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <a href="#ethics" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-8 py-3 rounded-xl font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition shadow-lg">윤리 원칙 알아보기</a>
+                <a href="#program" class="border border-slate-300 dark:border-slate-700 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">학습 로드맵</a>
+            </div>
+        </div>
+
+        <div class="mt-20 animate-float opacity-20 dark:opacity-50">
+            <i class="fa-solid fa-microchip text-8xl text-sky-500"></i>
+        </div>
+    </header>
+
+    <!-- AI Ethics Section -->
+    <section id="ethics" class="py-24 px-4 bg-slate-50 dark:bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">인공지능 윤리</h2>
+                <p class="text-slate-600 dark:text-slate-400">기술보다 중요한 것은 사람입니다. 우리가 함께 고민해야 할 핵심 가치들.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="w-14 h-14 bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 text-amber-600 dark:text-amber-500 text-2xl">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">공정성 및 다양성</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">AI 개발 시 편향된 데이터를 배제하고, 모든 사용자에게 차별 없는 결과를 제공해야 합니다.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl border-sky-500/30">
+                    <div class="w-14 h-14 bg-sky-500/20 rounded-2xl flex items-center justify-center mb-6 text-sky-600 dark:text-sky-500 text-2xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">투명성 및 책임성</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">AI의 의사결정 과정은 설명 가능해야 하며, 결과에 대해 개발자와 운영자가 책임을 집니다.</p>
+                </div>
+
+                <!-- Card 3: AI Bias -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider text-white">Critical</div>
+                    <div class="w-14 h-14 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 dark:text-indigo-400 text-2xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">인공지능의 편향성</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">학습 데이터에 숨겨진 인간의 고정관념이 AI를 통해 증폭될 수 있다는 사실을 알고 있나요?</p>
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-700/50">
+                        <span class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-widest">Case Study</span>
+                        <p class="text-sm text-slate-500 mt-1 italic">"데이터의 공정함이 결과의 정의로움이 됩니다."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Program Section -->
+    <section id="program" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1 order-2 md:order-1">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">인공지능 학습 프로그램</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                        이론 중심에서 벗어나 직접 데이터를 수집하고 모델을 학습시키는 실습 위주의 커리큘럼을 경험해보세요. 
+                        초보자도 쉽게 따라올 수 있는 도구들을 활용합니다.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 w-6 h-6 bg-sky-500/20 text-sky-600 dark:text-sky-500 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <div>
+                                <h4 class="font-bold">머신러닝 기초 (Teachable Machine)</h4>
+                                <p class="text-sm text-slate-500">이미지, 소리, 동작 데이터를 이용한 노코드 AI 학습</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 w-6 h-6 bg-sky-500/20 text-sky-600 dark:text-sky-500 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <div>
+                                <h4 class="font-bold">데이터 분석 및 전처리</h4>
+                                <p class="text-sm text-slate-500">공공데이터를 활용한 상관관계 분석 및 시각화 실습</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 w-6 h-6 bg-sky-500/20 text-sky-600 dark:text-sky-500 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <div>
+                                <h4 class="font-bold">생성형 AI 및 딥러닝</h4>
+                                <p class="text-sm text-slate-500">LLM의 원리 이해 및 프롬프트 엔지니어링 프로젝트</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button class="mt-10 group flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold hover:text-sky-500 transition">
+                        상세 강의 계획서 다운로드
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </button>
+                </div>
+
+                <div class="flex-1 order-1 md:order-2 relative">
+                    <div class="w-full aspect-video bg-gradient-to-br from-sky-500/20 to-indigo-500/20 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center relative group shadow-2xl">
+                        <!-- Mock Preview of a Dashboard -->
+                        <div class="absolute inset-4 bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-2xl border border-slate-100 dark:border-slate-700">
+                             <div class="w-full h-8 bg-slate-100 dark:bg-slate-700 flex items-center px-3 gap-1">
+                                <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                             </div>
+                             <div class="p-4 grid grid-cols-2 gap-4">
+                                <div class="h-20 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-image text-slate-300 dark:text-slate-600 text-3xl"></i>
+                                </div>
+                                <div class="h-20 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-chart-line text-slate-300 dark:text-slate-600 text-3xl"></i>
+                                </div>
+                                <div class="col-span-2 h-16 bg-sky-500/5 border border-sky-500/20 rounded-lg flex items-center px-4">
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                        <div class="w-2/3 h-full bg-sky-500"></div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <!-- Decorative element -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-sky-500/20 blur-2xl rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-12 border-t border-slate-200 dark:border-slate-800 text-center text-slate-500 text-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="font-bold text-slate-700 dark:text-slate-300 text-lg mb-1">인공지능 기초 수업</p>
+                    <p>© 2024 정보 선생님. All rights reserved.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition"><i class="fa-brands fa-github text-xl"></i></a>
+                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition"><i class="fa-solid fa-envelope text-xl"></i></a>
+                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition"><i class="fa-solid fa-link text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme or system preference
+        if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+            html.classList.add('light');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            html.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.replace('dark', 'light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.replace('light', 'dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Scroll Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
