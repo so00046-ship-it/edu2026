@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인공지능의 편향과 윤리적 딜레마</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: 'fadeIn 0.5s ease-in-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .tab-btn.active {
+      background-color: #e0e7ff; /* indigo-100 */
+      color: #4338ca; /* indigo-700 */
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    .tab-btn:not(.active) {
+      color: #475569; /* slate-600 */
+    }
+    .tab-btn:not(.active):hover {
+      background-color: #f1f5f9; /* slate-100 */
+    }
+    .hidden-section { display: none; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800">
+
+  <!-- Header -->
+  <header class="bg-indigo-600 text-white p-8 shadow-md">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col md:flex-row items-center gap-6">
+        <div class="bg-white/20 p-4 rounded-full flex-shrink-0">
+          <i data-lucide="book-open" class="w-12 h-12 text-white"></i>
+        </div>
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl font-bold mb-2">인공지능의 편향과 윤리적 딜레마</h1>
+          <p class="text-indigo-100 text-lg">인공지능 시대의 핵심 윤리 개념을 이해하고 비판적 사고력을 길러봅시다.</p>
+        </div>
+      </div>
+      
+      <!-- 상단 버튼 그룹 -->
+      <div class="flex items-center gap-3 mt-4 md:mt-0">
+        <!-- 홈 버튼 -->
+        <a href="../index.html" class="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl font-bold shadow-sm hover:shadow transition-all whitespace-nowrap border border-transparent">
+          <i data-lucide="home" class="w-5 h-5"></i>
+          홈
+        </a>
+
+        <!-- 인포그래픽 버튼 -->
+        <button onclick="toggleInfographic(true)" class="flex items-center gap-2 bg-white text-indigo-700 hover:bg-indigo-50 px-5 py-3 rounded-xl font-bold shadow-sm hover:shadow transition-all whitespace-nowrap border border-indigo-100">
+          <i data-lucide="image" class="w-5 h-5"></i>
+          인포그래픽 보기
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto p-4 my-8">
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8 bg-white p-2 rounded-xl shadow-sm border border-slate-100" id="tabs-container">
+      <button onclick="switchTab('bias')" id="tab-bias" class="tab-btn active flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all">
+        <i data-lucide="brain" class="w-5 h-5"></i> 인공지능의 편향성
+      </button>
+      <button onclick="switchTab('dilemma')" id="tab-dilemma" class="tab-btn flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all">
+        <i data-lucide="scale" class="w-5 h-5"></i> 윤리적 딜레마
+      </button>
+      <button onclick="switchTab('guidelines')" id="tab-guidelines" class="tab-btn flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all">
+        <i data-lucide="shield-check" class="w-5 h-5"></i> 5대 평가 질문
+      </button>
+      <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all">
+        <i data-lucide="help-circle" class="w-5 h-5"></i> 미니 퀴즈
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 min-h-[500px] relative">
+      
+      <!-- Bias Section -->
+      <div id="section-bias" class="tab-content animate-fadeIn">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 flex items-center gap-2">
+          <i data-lucide="brain" class="text-indigo-600"></i> 인공지능의 편향성 (AI Bias)
+        </h2>
+        <p class="text-lg text-slate-600 mb-8 bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+          인공지능은 흔히 중립적이라고 생각하기 쉽지만, 인간이 만든 <strong>데이터와 알고리즘</strong>에 기반해 학습하므로 필연적으로 편향성을 가질 수 있습니다.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-semibold text-slate-800 mb-3 text-blue-600">학습 데이터 편향</h3>
+            <p class="text-slate-600">알고리즘이 특정 패턴이나 속성에 과도한 가중치를 부여하거나, 수집된 데이터 자체가 현실 세계의 불균형(특정 인종, 성별 부족 등)을 내포하고 있을 때 발생합니다.</p>
+          </div>
+          <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-semibold text-slate-800 mb-3 text-purple-600">알고리즘 편향</h3>
+            <p class="text-slate-600">과거의 경험이나 사회적 편견이 투영되어 알고리즘 자체가 특정 집단에 대해 잘못되거나 불공정한 판단을 내리도록 설계되는 현상입니다.</p>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-slate-800 mb-4">인간 vs 인공지능 편향 비교</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700">
+                <th class="p-4 border-b-2 border-slate-200 font-semibold rounded-tl-lg">구분</th>
+                <th class="p-4 border-b-2 border-slate-200 font-semibold">인간의 편향</th>
+                <th class="p-4 border-b-2 border-slate-200 font-semibold rounded-tr-lg">인공지능의 편향</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-100 hover:bg-slate-50">
+                <td class="p-4 font-medium text-slate-700">발생 원인</td>
+                <td class="p-4 text-slate-600">경험, 문화, 교육, 사회적 환경을 통한 학습</td>
+                <td class="p-4 text-slate-600">학습 데이터와 알고리즘에 기반한 기계적 학습</td>
+              </tr>
+              <tr class="border-b border-slate-100 hover:bg-slate-50">
+                <td class="p-4 font-medium text-slate-700">수정 가능성</td>
+                <td class="p-4 text-slate-600">스스로 인식하기 어렵고, 자각 및 교육을 통한 수정 필요</td>
+                <td class="p-4 text-slate-600 font-semibold text-green-600">데이터 정제/알고리즘 수정을 통한 교정 가능</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-medium text-slate-700">영향력</td>
+                <td class="p-4 text-slate-600">개인이나 특정 집단의 판단에 제한적 영향</td>
+                <td class="p-4 text-slate-600">다양한 서비스, 시스템 전반에 광범위한 파급력</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Dilemma Section -->
+      <div id="section-dilemma" class="tab-content hidden-section animate-fadeIn">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 flex items-center gap-2">
+          <i data-lucide="scale" class="text-indigo-600"></i> 윤리적 딜레마 (Ethical Dilemma)
+        </h2>
+        <p class="text-lg text-slate-600 mb-8 bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+          윤리적 딜레마란 어떤 결정을 내리더라도 도덕적으로 복잡하거나 모순적인 결과를 초래할 수 있는 선택의 기로를 의미합니다.
+        </p>
+
+        <div class="mb-10">
+          <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">1. 트롤리 딜레마 (Trolley Dilemma)</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-red-50 p-5 rounded-lg border border-red-100 relative overflow-hidden">
+              <div class="absolute top-0 right-0 bg-red-500 text-white font-bold py-1 px-3 rounded-bl-lg">찬성 89%</div>
+              <h4 class="font-bold text-lg mb-2 text-red-800 mt-4">사례 1: 선로 전환기 당기기</h4>
+              <p class="text-slate-700 text-sm">5명을 구하기 위해 선로를 바꿔 1명을 희생시키는 행위. 간접적 개입으로 다수를 구하는 것에 많은 사람이 동의했습니다.</p>
+            </div>
+            <div class="bg-orange-50 p-5 rounded-lg border border-orange-100 relative overflow-hidden">
+              <div class="absolute top-0 right-0 bg-orange-500 text-white font-bold py-1 px-3 rounded-bl-lg">찬성 11%</div>
+              <h4 class="font-bold text-lg mb-2 text-orange-800 mt-4">사례 2: 사람 밀어 멈추기</h4>
+              <p class="text-slate-700 text-sm">5명을 구하기 위해 옆에 있는 체구가 큰 사람을 육교 아래로 밀어 희생시키는 행위. <strong>결과는 같지만 '직접적인 신체적 개입'</strong>에 대해 도덕적 거부감이 큽니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">2. 자율주행 자동차의 딜레마</h3>
+          <p class="mb-4 text-slate-600">브레이크가 고장 난 상황, 인공지능은 누구를 피하고 누구를 보호해야 할까요? 이는 인간이 아닌 기계가 '선택의 주체'가 된다는 점에서 핵심 쟁점입니다.</p>
+          
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <h4 class="font-semibold text-lg mb-3 flex items-center gap-2">
+              MIT '모럴 머신' 연구 결과 (2008)
+            </h4>
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+              <ul class="space-y-2 text-slate-700 text-sm">
+                <li class="flex items-center gap-2"><div class="w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full flex items-center justify-center font-bold text-xs">1</div> 유모차를 끄는 사람</li>
+                <li class="flex items-center gap-2"><div class="w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full flex items-center justify-center font-bold text-xs">2</div> 소녀</li>
+                <li class="flex items-center gap-2"><div class="w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full flex items-center justify-center font-bold text-xs">3</div> 소년</li>
+                <li class="flex items-center gap-2 text-slate-400">...</li>
+                <li class="flex items-center gap-2"><div class="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">18</div> 범죄자</li>
+                <li class="flex items-center gap-2"><div class="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold text-xs">19</div> 고양이</li>
+              </ul>
+              <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-100 text-sm">
+                <strong class="block text-indigo-700 mb-2">💡 지역적 가치관의 차이</strong>
+                <p class="mb-2"><strong>북미/유럽:</strong> "어린이 우선" 보호 성향 강함</p>
+                <p><strong>동방 국가:</strong> "노인 우선" 보호 성향 강함</p>
+                <p class="mt-3 text-xs text-slate-500">* 글로벌 기업이 서비스를 출시할 때 문화적 차이를 반영해야 함을 시사합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guidelines Section -->
+      <div id="section-guidelines" class="tab-content hidden-section animate-fadeIn">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 flex items-center gap-2">
+          <i data-lucide="shield-check" class="text-indigo-600"></i> 5대 평가 질문 (가이드라인)
+        </h2>
+        <p class="text-lg text-slate-600 mb-8 bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+          인공지능 시스템의 윤리적 타당성을 확보하고 기술적 오디팅(검증)을 수행하기 위해 던져야 할 5가지 핵심 질문입니다.
+        </p>
+        <div class="grid gap-4" id="guidelines-list">
+          <!-- JS로 주입 -->
+        </div>
+      </div>
+
+      <!-- Quiz Section -->
+      <div id="section-quiz" class="tab-content hidden-section animate-fadeIn">
+        <!-- JS로 주입 -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 인포그래픽 팝업창 (Modal) -->
+  <div id="infographic-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-slate-900/80 backdrop-blur-sm">
+    <div class="relative bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[95vh] flex flex-col animate-fadeIn">
+      <!-- 팝업 헤더 -->
+      <div class="flex justify-between items-center p-4 md:p-6 border-b border-slate-100">
+        <h3 class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+          <i data-lucide="image" class="text-indigo-600 w-6 h-6"></i> 
+          인공지능의 두 얼굴: 편향성과 윤리적 딜레마
+        </h3>
+        <button onclick="toggleInfographic(false)" class="p-2 bg-slate-100 hover:bg-red-100 hover:text-red-600 rounded-full transition-colors focus:outline-none">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <!-- 팝업 콘텐츠 (이미지) -->
+      <div class="overflow-y-auto p-4 bg-slate-50 rounded-b-2xl flex justify-center items-start">
+        <img src="04.png.jpg" alt="인공지능 편향성과 윤리적 딜레마 인포그래픽" class="max-w-full h-auto rounded-lg shadow-sm border border-slate-200"/>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- State Variables ---
+    const tabs = ['bias', 'dilemma', 'guidelines', 'quiz'];
+    let currentQuestion = 0;
+    let score = 0;
+    let showResults = false;
+    let selectedAnswer = null;
+    let isAnswered = false;
+
+    // --- Data ---
+    const guidelinesData = [
+      { q: "행동의 결과가 공정한가?", d: "결과값이 특정 인종, 성별, 계층에 부당한 차별을 가하지 않는지 확인합니다." },
+      { q: "누구의 이익을 먼저 고려해야 하는가?", d: "이해관계자 간 충돌 시 자원 배분과 보호의 우선순위가 정당한지 검토합니다." },
+      { q: "누구를 먼저 구해야 하는가?", d: "위급 상황에서의 생명 보호 순위가 공동체의 보편적 가치와 부합하는지 평가합니다." },
+      { q: "어떤 방법으로 결정해야 하는가?", d: "의사결정 알고리즘의 투명성과 논리적 일관성을 확보합니다." },
+      { q: "사회적 합의를 이루었는가?", d: "해당 시스템의 판단 기준이 사회적·문화적 수용성을 갖추었는지 점검합니다." }
+    ];
+
+    const questions = [
+      {
+        question: "인공지능 시스템에서 윤리적 판단이 논란거리가 되는 근본적인 이유는 무엇인가요?",
+        options: [
+          "모든 인간의 감정을 너무 완벽하게 시뮬레이션하기 때문에",
+          "독립적으로 생각하고 감정을 느끼며 도덕적 가치를 이해하는 능력이 없기 때문에",
+          "인공지능은 어떠한 데이터도 학습할 수 없기 때문에",
+          "개발자가 의도적으로 비윤리적인 코드를 항상 삽입하기 때문에"
+        ],
+        correctAnswer: 1,
+        explanation: "인공지능은 인간처럼 독립적으로 생각하거나 감정을 느끼지 못하며, 기계학습 알고리즘과 프로그램에 의해 작동하기 때문입니다."
+      },
+      {
+        question: "특정 패턴이나 속성에 과도한 가중치를 부여하거나 불균형한 데이터를 학습할 때 발생하는 편향은?",
+        options: ["알고리즘 편향", "확증 편향", "학습 데이터 편향", "사회적 편향"],
+        correctAnswer: 2,
+        explanation: "'학습 데이터 편향'은 알고리즘이 처리하는 데이터 자체가 불균형하거나 특정 방향으로 치우쳐 있을 때 발생합니다."
+      },
+      {
+        question: "인간의 편향성과 비교할 때 인공지능의 편향성이 가지는 가장 큰 특징(차이점)은 무엇인가요?",
+        options: [
+          "스스로 교육을 통해 서서히 고쳐나간다.",
+          "데이터나 알고리즘을 변경함으로써 편향성을 교정(수정)하는 것이 가능하다.",
+          "한 번 편향되면 절대 바꿀 수 없다.",
+          "인간보다 무의식적으로 더 많은 편향을 숨길 수 있다."
+        ],
+        correctAnswer: 1,
+        explanation: "인공지능은 편향된 결과를 객관적으로 인식할 수 있으며, 학습 데이터 정제 및 알고리즘 수정을 통해 교정할 수 있습니다."
+      },
+      {
+        question: "트롤리 딜레마 사례 2(직접 사람 밀어 멈추기)에서 사람들이 찬성하는 비율이 단 11%에 불과한 이유는?",
+        options: [
+          "희생되는 사람이 1명이기 때문에",
+          "결과적으로 아무도 구할 수 없기 때문에",
+          "결과는 같더라도 '직접적인 신체적 개입(살해)'에 대한 도덕적 거부감이 크기 때문에",
+          "선로 전환기를 고치는 것이 더 싸기 때문에"
+        ],
+        correctAnswer: 2,
+        explanation: "직접적으로 누군가를 죽음에 이르게 하는 개입에 대해서는 인간의 보편적 도덕 직관이 훨씬 더 거부감을 느끼기 때문입니다."
+      },
+      {
+        question: "MIT 자율주행 자동차 연구에 따르면, 북미/유럽과 동방 국가 간의 윤리적 우선순위 차이는 어떠했나요?",
+        options: [
+          "북미는 노인 우선, 동방은 범죄자 우선",
+          "북미는 어린이 우선, 동방은 노인 우선",
+          "북미는 고양이 우선, 동방은 개 우선",
+          "양쪽 모두 차이 없이 임산부를 가장 우선시함"
+        ],
+        correctAnswer: 1,
+        explanation: "지역마다 윤리적 가치관이 다름을 보여주는 사례로, 북미/유럽은 '어린이', 동방 국가들은 '노인'을 우선적으로 보호해야 한다는 결과가 나왔습니다."
+      }
+    ];
+
+    // --- Functions ---
+    function init() {
+      // 아이콘 렌더링
+      lucide.createIcons();
+      
+      // 가이드라인 목록 렌더링
+      const guidelinesList = document.getElementById('guidelines-list');
+      guidelinesData.forEach((item, index) => {
+        guidelinesList.innerHTML += `
+          <div class="flex gap-4 p-5 bg-white border border-slate-200 rounded-xl hover:border-indigo-300 hover:shadow-md transition-all">
+            <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center font-bold text-lg">
+              ${index + 1}
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-slate-800 mb-1">${item.q}</h3>
+              <p class="text-slate-600">${item.d}</p>
+            </div>
+          </div>
+        `;
+      });
+
+      renderQuiz();
+    }
+
+    function switchTab(tabId) {
+      // 탭 버튼 스타일 갱신
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const section = document.getElementById(`section-${t}`);
+        if (t === tabId) {
+          btn.classList.add('active');
+          btn.classList.add('bg-indigo-100', 'text-indigo-700', 'shadow-sm');
+          btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+          section.classList.remove('hidden-section');
+        } else {
+          btn.classList.remove('active');
+          btn.classList.remove('bg-indigo-100', 'text-indigo-700', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+          section.classList.add('hidden-section');
+        }
+      });
+    }
+
+    function toggleInfographic(show) {
+      const modal = document.getElementById('infographic-modal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    // --- Quiz Functions ---
+    function handleAnswerClick(index) {
+      if (isAnswered) return;
+      selectedAnswer = index;
+      isAnswered = true;
+      
+      if (index === questions[currentQuestion].correctAnswer) {
+        score++;
+      }
+      renderQuiz();
+    }
+
+    function nextQuestion() {
+      if (currentQuestion + 1 < questions.length) {
+        currentQuestion++;
+        selectedAnswer = null;
+        isAnswered = false;
+      } else {
+        showResults = true;
+      }
+      renderQuiz();
+    }
+
+    function resetQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      showResults = false;
+      selectedAnswer = null;
+      isAnswered = false;
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      const quizSection = document.getElementById('section-quiz');
+      
+      if (showResults) {
+        quizSection.innerHTML = `
+          <div class="text-center py-10 animate-fadeIn">
+            <div class="inline-block bg-indigo-100 p-6 rounded-full mb-6">
+              <i data-lucide="shield-check" class="w-20 h-20 text-indigo-600"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">학습 완료!</h2>
+            <p class="text-xl text-slate-600 mb-8">
+              총 ${questions.length}문제 중 <strong class="text-indigo-600 text-2xl">${score}</strong>문제를 맞혔습니다.
+            </p>
+            <button onclick="resetQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+              퀴즈 다시 풀기
+            </button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      const q = questions[currentQuestion];
+      const progress = ((currentQuestion) / questions.length) * 100;
+
+      let optionsHtml = '';
+      q.options.forEach((option, index) => {
+        let buttonClass = "w-full text-left p-4 rounded-xl border-2 transition-all font-medium text-lg ";
+        let iconHtml = '';
+
+        if (!isAnswered) {
+          buttonClass += "bg-white border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 text-slate-700 cursor-pointer";
+        } else {
+          buttonClass += " cursor-default";
+          if (index === q.correctAnswer) {
+            buttonClass += " bg-green-50 border-green-500 text-green-800";
+            iconHtml = `<i data-lucide="check" class="text-green-600"></i>`;
+          } else if (index === selectedAnswer && index !== q.correctAnswer) {
+            buttonClass += " bg-red-50 border-red-500 text-red-800";
+            iconHtml = `<i data-lucide="x" class="text-red-600"></i>`;
+          } else {
+            buttonClass += " bg-white border-slate-200 text-slate-400 opacity-50";
+          }
+        }
+
+        optionsHtml += `
+          <button onclick="handleAnswerClick(${index})" ${isAnswered ? 'disabled' : ''} class="${buttonClass}">
+            <div class="flex items-center justify-between">
+              <span>${option}</span>
+              ${iconHtml}
+            </div>
+          </button>
+        `;
+      });
+
+      let explanationHtml = '';
+      if (isAnswered) {
+        explanationHtml = `
+          <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl mb-8 animate-fadeIn">
+            <p class="font-bold text-blue-800 mb-1 flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5"></i> 해설
+            </p>
+            <p class="text-blue-900">${q.explanation}</p>
+          </div>
+        `;
+      }
+
+      let nextButtonHtml = '';
+      if (isAnswered) {
+        nextButtonHtml = `
+          <div class="text-right">
+            <button onclick="nextQuestion()" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+              ${currentQuestion + 1 === questions.length ? '결과 확인하기' : '다음 문제'} 
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        `;
+      }
+
+      quizSection.innerHTML = `
+        <div class="max-w-3xl mx-auto animate-fadeIn">
+          <div class="flex justify-between items-center mb-6 text-sm font-bold text-slate-500">
+            <span>Question ${currentQuestion + 1} of ${questions.length}</span>
+            <span>Score: ${score}</span>
+          </div>
+          
+          <div class="mb-8">
+            <div class="w-full bg-slate-200 rounded-full h-2.5">
+              <div class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: ${progress}%"></div>
+            </div>
+          </div>
+
+          <h2 class="text-2xl font-bold text-slate-800 mb-8">${q.question}</h2>
+
+          <div class="space-y-3 mb-8">
+            ${optionsHtml}
+          </div>
+
+          ${explanationHtml}
+          ${nextButtonHtml}
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // Initialize application
+    document.addEventListener('DOMContentLoaded', init);
+
+  </script>
+</body>
+</html>
